@@ -1,0 +1,27 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tesla OAuth Callback</title>
+<style>
+  body{font-family:system-ui,-apple-system,sans-serif;max-width:44rem;margin:3rem auto;padding:0 1.25rem;line-height:1.6;color:#1a1a1a;background:#fafafa}
+  code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  pre{background:#fff;border:1px solid #ddd;border-radius:8px;padding:1rem;overflow-x:auto;word-break:break-all;white-space:pre-wrap}
+  .hint{color:#555;font-size:.95rem}
+  h1{font-size:1.4rem}
+</style>
+<h1>Tesla OAuth Callback</h1>
+<p class="hint">Dieser Code ist nur wenige Minuten gültig.</p>
+<pre id="out">Kein Code in der Adresse gefunden.</pre>
+<p class="hint" id="note"></p>
+<script>
+  var p = new URLSearchParams(location.search);
+  var code = p.get("code"), err = p.get("error");
+  var out = document.getElementById("out");
+  if (code) {
+    out.textContent = code;
+    document.getElementById("note").textContent =
+      "Diesen Code kopieren und im Terminal weitergeben.";
+  } else if (err) {
+    out.textContent = "Fehler: " + err + (p.get("error_description") ? " – " + p.get("error_description") : "");
+  }
+</script>
